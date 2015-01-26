@@ -14,11 +14,6 @@ public class Map extends JPanel {
     protected Color bgColor;
     protected ArrayList<Character> characters = new ArrayList<Character>();
 
-    public Map(int w, int h) {
-        this.locations = new Location[w][h];
-        clear();
-    }
-
     public Map(int w, int h, Color bgColor) {
         this.locations = new Location[w][h];
         this.bgColor = bgColor;
@@ -40,8 +35,8 @@ public class Map extends JPanel {
     }
 
     public void clear() {
-        for (int y = 0; y < locations.length; y++) {
-            for (int x = 0; x < locations[y].length; x++) {
+        for (int x = 0; x < locations.length; x++) {
+            for (int y = 0; y < locations[x].length; y++) {
                 locations[x][y] = new Air();
             }
         }
@@ -53,6 +48,14 @@ public class Map extends JPanel {
 
     public Location getLocation(int x, int y) {
         return locations[x][y];
+    }
+
+    public int getMapWidth(){
+        return locations.length;
+    }
+
+    public int getMapHeight(){
+        return locations[0].length; //assuming non-rectangle map
     }
 
     public boolean isValid(int x, int y) {
@@ -87,8 +90,8 @@ public class Map extends JPanel {
 
         g.fillRect(0, 0, locations.length * mapSize, locations[0].length * mapSize);
 
-        for (int y = 0; y < locations.length; y++) {
-            for (int x = 0; x < locations[y].length; x++) {
+        for (int x = 0; x < locations.length; x++) {
+            for (int y = 0; y < locations[x].length; y++) {
                 if (!locations[x][y].isTransparent()) {
                     g.setColor(locations[x][y].getColor());
                     g.fillRect(x * mapSize, y * mapSize, mapSize, mapSize);
