@@ -2,19 +2,20 @@ package com.poetaytoe.untitled.init;
 
 import com.poetaytoe.untitled.character.Player;
 import com.poetaytoe.untitled.config.UntitledConfig;
+import com.poetaytoe.untitled.reference.Animation;
 import com.poetaytoe.untitled.world.Map;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class UntitledGraphics extends JFrame implements KeyListener, MouseListener{
+public class UntitledGraphics extends JFrame implements KeyListener, MouseListener {
 
     public static UntitledGraphics ug;
     Map map;
+	public static Animation animation;
 
     public UntitledGraphics() {
 
@@ -22,6 +23,7 @@ public class UntitledGraphics extends JFrame implements KeyListener, MouseListen
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
+        setResizable(false);
         setAutoRequestFocus(true);
 
         addMouseListener(this);
@@ -29,9 +31,9 @@ public class UntitledGraphics extends JFrame implements KeyListener, MouseListen
         addKeyListener(this);
     }
 
-    public void setMap(Map map){
+    public void setMap(Map map) {
 
-        if(this.map != null)
+        if (this.map != null)
             remove(this.map);
 
         this.map = map;

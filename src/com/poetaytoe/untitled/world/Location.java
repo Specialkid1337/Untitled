@@ -1,22 +1,26 @@
 package com.poetaytoe.untitled.world;
 
+import com.poetaytoe.untitled.character.Character;
+
 import java.awt.*;
 
 public abstract class Location {
 
-    protected Color color;
-    protected boolean solid;
-    protected boolean transparent;
+    protected Color color = new Color(255, 0, 255);
+    protected boolean solid = true;
+    protected boolean transparent = false;
 
     public Location() {
     }
 
-    public Location(Color color) {
+    public Location setColor(Color color) {
         this.color = color;
+        return this;
     }
 
-    public Location(int r, int g, int b) {
+    public Location setColor(int r, int g, int b) {
         this.color = new Color(r, g, b);
+        return this;
     }
 
     public boolean isSolid() {
@@ -32,7 +36,7 @@ public abstract class Location {
     }
 
     //When the block is landed on
-    public void onLandOn(){
+    public void onLandOn(Character character) {
 
     }
 

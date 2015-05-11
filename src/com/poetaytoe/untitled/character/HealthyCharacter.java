@@ -1,5 +1,6 @@
 package com.poetaytoe.untitled.character;
 
+import com.poetaytoe.untitled.init.UntitledGraphics;
 import com.poetaytoe.untitled.world.Map;
 
 import java.awt.*;
@@ -22,13 +23,21 @@ public abstract class HealthyCharacter extends Character {
 
     public void damage(int damage) {
         health -= damage;
-        if (damage <= 0) {
+        if (health <= 0) {
             onDeath();
         }
     }
 
+    public int getHealth() {
+        return health;
+    }
+
     public void heal(int heal) {
         health = (health + heal > maxHealth) ? maxHealth : (health += heal);
+    }
+
+    public int getMaxHealth() {
+        return maxHealth;
     }
 
     public void onDeath() {

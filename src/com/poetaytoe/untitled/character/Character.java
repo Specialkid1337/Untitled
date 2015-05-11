@@ -67,12 +67,22 @@ public abstract class Character {
 
     public boolean warpTo(Map map, int x, int y) {
         if (map.isOpen(x, y)) {
-            map.getLocation(x,y).onLandOn();
-            this.map = map;
-            this.x = x;
-            this.y = y;
-            map.repaint();
-            return true;
+            if (map == this.map) {
+                this.x = x;
+                this.y = y;
+                map.getLocation(x, y).onLandOn(this);
+                map.repaint();
+                return true;
+            } else {
+                this.map.removeCharacter(this);
+                map.addCharacter(this);
+                this.x = x;
+                this.y = y;
+                this.map = map;
+                map.getLocation(x, y).onLandOn(this);
+                map.repaint();
+                return true;
+            }
         }
         return false;
     }
